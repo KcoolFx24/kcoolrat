@@ -1,4 +1,6 @@
-/* Reset and Base Styles */
+/* ==========================================================================
+   RESET & SYSTEM STYLES
+   ========================================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -7,14 +9,16 @@
 }
 
 body {
-    background-color: #0f141c; /* Deep rich dark background */
+    background-color: #0f141c; /* Modern premium dark theme foundation */
     color: #e2e8f0;
     height: 100vh;
     display: flex;
     flex-direction: column;
 }
 
-/* Navbar Styling */
+/* ==========================================================================
+   NAVBAR STYLING
+   ========================================================================== */
 .navbar {
     background-color: #18202c;
     padding: 15px 30px;
@@ -31,7 +35,7 @@ body {
 }
 
 .logo span {
-    color: #00ff87; /* Electric Green Accent */
+    color: #00ff87; /* Industry-standard Electric Green Accent */
 }
 
 .user-balance {
@@ -45,20 +49,22 @@ body {
     color: #00ff87;
 }
 
-/* Dashboard Layout Grid */
+/* ==========================================================================
+   LAYOUT STRUCTURE (3-COLUMN DESKTOP SPLIT)
+   ========================================================================== */
 .dashboard-container {
     display: grid;
-    grid-template-columns: 240px 1fr 320px; /* Crucial 3-column split */
+    grid-template-columns: 240px 1fr 320px;
     flex: 1;
     overflow: hidden;
 }
 
-/* Column Common Styling */
 .sidebar, .main-content, .betslip-container {
     padding: 20px;
     overflow-y: auto;
 }
 
+/* Left Sidebar Layout */
 .sidebar {
     background-color: #141b25;
     border-right: 1px solid #243042;
@@ -89,7 +95,7 @@ body {
     color: #00ff87;
 }
 
-/* Central Content Match Cards */
+/* Center Content Cards */
 .main-content {
     background-color: #0f141c;
 }
@@ -128,7 +134,7 @@ body {
     margin: 0 5px;
 }
 
-/* Odds Button Matrix */
+/* Odds Matrices Configuration */
 .odds-container {
     display: flex;
     gap: 10px;
@@ -145,7 +151,7 @@ body {
     flex-direction: column;
     align-items: center;
     width: 75px;
-    transition: all 0.2s;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .odds-btn:hover {
@@ -164,7 +170,20 @@ body {
     color: #00ff87;
 }
 
-/* Right Sidebar: Betslip Styling */
+/* Active Highlight Interactions CSS rules */
+.odds-btn.selected {
+    background-color: #00ff87 !important;
+    border-color: #00ff87 !important;
+}
+
+.odds-btn.selected .label, 
+.odds-btn.selected .value {
+    color: #0f141c !important;
+}
+
+/* ==========================================================================
+   BETSLIP STRUCTURAL INTERFACES
+   ========================================================================== */
 .betslip-container {
     background-color: #141b25;
     border-left: 1px solid #243042;
@@ -248,8 +267,58 @@ body {
     background-color: #00e074;
 }
 
-/* Utility visibility helper */
+/* Global visibility helper utilities */
 .style-hidden {
     display: none !important;
 }
 
+/* ==========================================================================
+   MOBILE-FIRST MEDIA INTERFACES (CRITICAL FOR PHONES)
+   ========================================================================== */
+@media (max-width: 768px) {
+    .dashboard-container {
+        grid-template-columns: 1fr; /* Switch to single-column stacking structure */
+        height: auto;
+        overflow-y: visible;
+    }
+
+    .sidebar {
+        display: none; /* Safely strips desktop sidebar elements to clean phone screens */
+    }
+
+    .main-content {
+        padding: 15px;
+    }
+
+    .match-card {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 15px;
+    }
+
+    .match-details {
+        text-align: center;
+    }
+
+    .teams {
+        font-size: 18px;
+        margin-top: 8px;
+    }
+
+    .odds-container {
+        justify-content: space-between;
+    }
+
+    .odds-btn {
+        flex: 1; /* Stretch odds keys equally wide across responsive breakpoints */
+        width: auto;
+        padding: 14px 0; /* Expanded touch pads for thumb clicks */
+    }
+
+    .betslip-container {
+        border-left: none;
+        border-top: 1px solid #243042;
+        padding: 20px;
+        background-color: #18202c;
+    }
+}
