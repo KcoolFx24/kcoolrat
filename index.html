@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apex Sportsbook</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">APEX<span>BET</span></div>
+        <div class="user-balance">Balance: <span id="balance">$1,000.00</span></div>
+    </header>
+
+    <div class="dashboard-container">
+        
+        <aside class="sidebar">
+            <h3>Popular Sports</h3>
+            <ul class="sports-list">
+                <li class="active"><i class="icon">⚽</i> Football</li>
+                <li><i class="icon">🏀</i> Basketball</li>
+                <li><i class="icon">🎾</i> Tennis</li>
+                <li><i class="icon">🎮</i> Esports</li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <div class="section-header">
+                <h2>Live & Upcoming Matches</h2>
+            </div>
+
+            <div class="match-card">
+                <div class="match-details">
+                    <span class="league">English Premier League</span>
+                    <div class="teams">
+                        <span class="team">Arsenal</span>
+                        <span class="vs">vs</span>
+                        <span class="team">Chelsea</span>
+                    </div>
+                </div>
+                <div class="odds-container">
+                    <button class="odds-btn" onclick="addToSlip('Arsenal vs Chelsea', 'Home', 1.85)">
+                        <span class="label">1</span>
+                        <span class="value">1.85</span>
+                    </button>
+                    <button class="odds-btn" onclick="addToSlip('Arsenal vs Chelsea', 'Draw', 3.40)">
+                        <span class="label">X</span>
+                        <span class="value">3.40</span>
+                    </button>
+                    <button class="odds-btn" onclick="addToSlip('Arsenal vs Chelsea', 'Away', 4.20)">
+                        <span class="label">2</span>
+                        <span class="value">4.20</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="match-card">
+                <div class="match-details">
+                    <span class="league">UEFA Champions League</span>
+                    <div class="teams">
+                        <span class="team">Real Madrid</span>
+                        <span class="vs">vs</span>
+                        <span class="team">Man City</span>
+                    </div>
+                </div>
+                <div class="odds-container">
+                    <button class="odds-btn" onclick="addToSlip('Real Madrid vs Man City', 'Home', 2.50)">
+                        <span class="label">1</span>
+                        <span class="value">2.50</span>
+                    </button>
+                    <button class="odds-btn" onclick="addToSlip('Real Madrid vs Man City', 'Draw', 3.60)">
+                        <span class="label">X</span>
+                        <span class="value">3.60</span>
+                    </button>
+                    <button class="odds-btn" onclick="addToSlip('Real Madrid vs Man City', 'Away', 2.65)">
+                        <span class="label">2</span>
+                        <span class="value">2.65</span>
+                    </button>
+                </div>
+            </div>
+        </main>
+
+        <aside class="betslip-container">
+            <h3>Betslip</h3>
+            <div id="betslip-empty" class="betslip-empty">
+                Your betslip is empty. Click on any odds to add a bet.
+            </div>
+            
+            <div id="betslip-active" class="betslip-active style-hidden">
+                <div class="slip-item">
+                    <div class="slip-match" id="slip-match">Arsenal vs Chelsea</div>
+                    <div class="slip-pick">Pick: <span id="slip-selection">Home</span> @ <span id="slip-odds">1.85</span></div>
+                </div>
+                
+                <div class="stake-section">
+                    <label for="stake-input">Stake ($):</label>
+                    <input type="number" id="stake-input" value="10" min="1" oninput="calculatePayout()">
+                </div>
+
+                <div class="payout-section">
+                    <span>Est. Payout:</span>
+                    <span id="payout-amount" class="payout-glow">$18.50</span>
+                </div>
+
+                <button class="place-bet-btn" onclick="confirmBet()">Place Bet</button>
+            </div>
+        </aside>
+
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+
