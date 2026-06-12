@@ -95,9 +95,14 @@ body {
     color: #00ff87;
 }
 
-/* Center Content Cards */
+/* Center Content Area */
 .main-content {
     background-color: #0f141c;
+}
+
+/* Hidden by default on desktop computers */
+.mobile-sports-menu {
+    display: none;
 }
 
 .section-header h2 {
@@ -134,7 +139,7 @@ body {
     margin: 0 5px;
 }
 
-/* Odds Matrices Configuration */
+/* Odds Button Configuration */
 .odds-container {
     display: flex;
     gap: 10px;
@@ -170,7 +175,7 @@ body {
     color: #00ff87;
 }
 
-/* Active Highlight Interactions CSS rules */
+/* Interactive Highlight State colors */
 .odds-btn.selected {
     background-color: #00ff87 !important;
     border-color: #00ff87 !important;
@@ -267,23 +272,61 @@ body {
     background-color: #00e074;
 }
 
-/* Global visibility helper utilities */
+/* Loading and Hidden Utilities */
+.loading-text {
+    text-align: center;
+    color: #94a3b8;
+    padding: 40px;
+    font-size: 14px;
+    font-style: italic;
+}
+
 .style-hidden {
     display: none !important;
 }
 
 /* ==========================================================================
-   MOBILE-FIRST MEDIA INTERFACES (CRITICAL FOR PHONES)
+   MOBILE-FIRST MEDIA INTERFACES (SMARTPHONE VIEW RULES)
    ========================================================================== */
 @media (max-width: 768px) {
     .dashboard-container {
-        grid-template-columns: 1fr; /* Switch to single-column stacking structure */
+        grid-template-columns: 1fr; /* Stack columns down vertically */
         height: auto;
         overflow-y: visible;
     }
 
     .sidebar {
-        display: none; /* Safely strips desktop sidebar elements to clean phone screens */
+        display: none; /* Hide wide desktop menu tree tabs */
+    }
+
+    /* Activate responsive dropdown menu wrapper panel on small screens */
+    .mobile-sports-menu {
+        display: block;
+        background-color: #18202c;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 15px;
+        border: 1px solid #243042;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .mobile-sports-menu label {
+        font-size: 13px;
+        font-weight: 600;
+        color: #94a3b8;
+    }
+
+    #sports-dropdown {
+        background-color: #243042;
+        border: 1px solid #2d3d54;
+        color: #fff;
+        padding: 8px 12px;
+        border-radius: 6px;
+        font-weight: 600;
+        outline: none;
+        width: 65%;
     }
 
     .main-content {
@@ -310,9 +353,9 @@ body {
     }
 
     .odds-btn {
-        flex: 1; /* Stretch odds keys equally wide across responsive breakpoints */
+        flex: 1; /* Stretch out touch target nodes safely across screens */
         width: auto;
-        padding: 14px 0; /* Expanded touch pads for thumb clicks */
+        padding: 14px 0;
     }
 
     .betslip-container {
