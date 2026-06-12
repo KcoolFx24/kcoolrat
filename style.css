@@ -9,7 +9,7 @@
 }
 
 body {
-    background-color: #0f141c; /* Modern premium dark theme foundation */
+    background-color: #0f141c;
     color: #e2e8f0;
     height: 100vh;
     display: flex;
@@ -35,7 +35,7 @@ body {
 }
 
 .logo span {
-    color: #00ff87; /* Industry-standard Electric Green Accent */
+    color: #00ff87;
 }
 
 .user-balance {
@@ -50,11 +50,68 @@ body {
 }
 
 /* ==========================================================================
-   LAYOUT STRUCTURE (3-COLUMN DESKTOP SPLIT)
+   VIEW NAVIGATION TABS INTERFACE
+   ========================================================================== */
+.view-navigation-tabs {
+    display: flex;
+    background-color: #141b25;
+    border-bottom: 1px solid #243042;
+}
+
+.nav-tab {
+    flex: 1;
+    background: none;
+    border: none;
+    color: #94a3b8;
+    padding: 15px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.2s;
+    border-bottom: 3px solid transparent;
+}
+
+.nav-tab:hover {
+    color: #fff;
+    background-color: #1c2635;
+}
+
+.nav-tab.active {
+    color: #00ff87;
+    border-bottom-color: #00ff87;
+    background-color: #18202c;
+}
+
+/* ==========================================================================
+   SEARCH ENGINE UI
+   ========================================================================== */
+.search-wrapper {
+    margin-bottom: 20px;
+}
+
+#sports-search-bar {
+    width: 100%;
+    background-color: #18202c;
+    border: 1px solid #243042;
+    color: #fff;
+    padding: 14px 20px;
+    border-radius: 10px;
+    font-size: 14px;
+    outline: none;
+    transition: border 0.2s;
+}
+
+#sports-search-bar:focus {
+    border-color: #00ff87;
+}
+
+/* ==========================================================================
+   LAYOUT STRUCTURE (3-COLUMN DESKTOP VIEW)
    ========================================================================== */
 .dashboard-container {
     display: grid;
-    grid-template-columns: 240px 1fr 320px;
+    grid-template-columns: 260px 1fr 340px;
     flex: 1;
     overflow: hidden;
 }
@@ -64,7 +121,6 @@ body {
     overflow-y: auto;
 }
 
-/* Left Sidebar Layout */
 .sidebar {
     background-color: #141b25;
     border-right: 1px solid #243042;
@@ -87,7 +143,11 @@ body {
     border-radius: 8px;
     cursor: pointer;
     margin-bottom: 5px;
-    transition: background 0.2s;
+    font-size: 14px;
+    transition: all 0.2s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .sports-list li:hover, .sports-list li.active {
@@ -95,12 +155,11 @@ body {
     color: #00ff87;
 }
 
-/* Center Content Area */
+/* Center Core Content Frames */
 .main-content {
     background-color: #0f141c;
 }
 
-/* Hidden by default on desktop computers */
 .mobile-sports-menu {
     display: none;
 }
@@ -121,25 +180,7 @@ body {
     border: 1px solid #243042;
 }
 
-.league {
-    font-size: 11px;
-    color: #94a3b8;
-    text-transform: uppercase;
-}
-
-.teams {
-    font-size: 16px;
-    font-weight: 600;
-    margin-top: 5px;
-}
-
-.vs {
-    color: #64748b;
-    font-size: 14px;
-    margin: 0 5px;
-}
-
-/* Odds Button Configuration */
+/* Odds Token Controllers */
 .odds-container {
     display: flex;
     gap: 10px;
@@ -156,7 +197,7 @@ body {
     flex-direction: column;
     align-items: center;
     width: 75px;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.2s;
 }
 
 .odds-btn:hover {
@@ -175,7 +216,6 @@ body {
     color: #00ff87;
 }
 
-/* Interactive Highlight State colors */
 .odds-btn.selected {
     background-color: #00ff87 !important;
     border-color: #00ff87 !important;
@@ -186,8 +226,27 @@ body {
     color: #0f141c !important;
 }
 
+/* Text Detail Parameters */
+.league {
+    font-size: 11px;
+    color: #94a3b8;
+    text-transform: uppercase;
+}
+
+.teams {
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 5px;
+}
+
+.vs {
+    color: #64748b;
+    font-size: 14px;
+    margin: 0 5px;
+}
+
 /* ==========================================================================
-   BETSLIP STRUCTURAL INTERFACES
+   BETSLIP INTERFACE CARDS
    ========================================================================== */
 .betslip-container {
     background-color: #141b25;
@@ -198,7 +257,7 @@ body {
     color: #64748b;
     text-align: center;
     font-size: 13px;
-    margin-top: 40px;
+    padding: 40px 0;
 }
 
 .betslip-active {
@@ -272,7 +331,52 @@ body {
     background-color: #00e074;
 }
 
-/* Loading and Hidden Utilities */
+/* ==========================================================================
+   CENTER PANE HISTORICAL CARD GRID LAYOUTS
+   ========================================================================== */
+.history-view-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 15px;
+}
+
+.empty-history-text {
+    grid-column: 1 / -1;
+    text-align: center;
+    color: #475569;
+    padding: 40px 0;
+    font-size: 14px;
+}
+
+.history-card {
+    background-color: #18202c;
+    border-left: 4px solid #00ff87;
+    border-radius: 8px;
+    padding: 16px;
+    border-top: 1px solid #243042;
+    border-right: 1px solid #243042;
+    border-bottom: 1px solid #243042;
+}
+
+.history-match {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 6px;
+}
+
+.history-details-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: #94a3b8;
+    margin-top: 4px;
+}
+
+.history-details-row span strong {
+    color: #fff;
+}
+
+/* Global utility tokens */
 .loading-text {
     text-align: center;
     color: #94a3b8;
@@ -286,22 +390,21 @@ body {
 }
 
 /* ==========================================================================
-   MOBILE-FIRST MEDIA INTERFACES (SMARTPHONE VIEW RULES)
+   MOBILE MEDIA CONTROLLERS
    ========================================================================== */
 @media (max-width: 768px) {
     .dashboard-container {
-        grid-template-columns: 1fr; /* Stack columns down vertically */
+        grid-template-columns: 1fr;
         height: auto;
         overflow-y: visible;
     }
 
     .sidebar {
-        display: none; /* Hide wide desktop menu tree tabs */
+        display: none;
     }
 
-    /* Activate responsive dropdown menu wrapper panel on small screens */
+    /* Keep active sport menu items visible only when displaying sportsbook panels */
     .mobile-sports-menu {
-        display: block;
         background-color: #18202c;
         padding: 15px;
         border-radius: 8px;
@@ -324,9 +427,9 @@ body {
         color: #fff;
         padding: 8px 12px;
         border-radius: 6px;
+        width: 70%;
         font-weight: 600;
         outline: none;
-        width: 65%;
     }
 
     .main-content {
@@ -353,7 +456,7 @@ body {
     }
 
     .odds-btn {
-        flex: 1; /* Stretch out touch target nodes safely across screens */
+        flex: 1;
         width: auto;
         padding: 14px 0;
     }
@@ -362,6 +465,6 @@ body {
         border-left: none;
         border-top: 1px solid #243042;
         padding: 20px;
-        background-color: #18202c;
+        background-color: #141b25;
     }
 }

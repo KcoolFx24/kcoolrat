@@ -3,68 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KCOOLBET | Sportsbook</title>
+    <title>KCOOLBET | Sportsbook Pro</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Premium Inter Typography -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <!-- Top Navigation Bar -->
     <header class="navbar">
         <div class="logo">KCOOL<span>BET</span></div>
         <div class="user-balance">Balance: <span id="balance">$1,000.00</span></div>
     </header>
 
-    <!-- Main Dashboard Grid Layout -->
+    <nav class="view-navigation-tabs">
+        <button id="tab-sportsbook" class="nav-tab active" onclick="switchMainView('sportsbook')">⚽ Sportsbook</button>
+        <button id="tab-mybets" class="nav-tab" onclick="switchMainView('mybets')">🎟️ My Bets (<span id="history-count">0</span>)</button>
+    </nav>
+
     <div class="dashboard-container">
         
-        <!-- Left Sidebar: Sports Navigation (Hidden automatically on mobile screens) -->
-        <aside class="sidebar">
-            <h3>Popular Sports</h3>
-            <ul class="sports-list">
-                <li class="active">⚽ Football</li>
-                <li>🏀 Basketball</li>
-                <li>🎾 Tennis</li>
-                <li>🎮 Esports</li>
+        <aside class="sidebar" id="left-sidebar-wrapper">
+            <h3>Active Sports</h3>
+            <ul class="sports-list" id="desktop-sports-list">
+                <li class="active" onclick="filterBySport('upcoming', this)">🌐 All Upcoming</li>
             </ul>
         </aside>
 
-        <!-- Center Column: Main Sportsbook Display -->
         <main class="main-content">
             
-            <!-- Mobile Responsive Dropdown Menu (Hidden on Desktop) -->
-            <div class="mobile-sports-menu">
-                <label for="sports-dropdown">Select Sport:</label>
-                <select id="sports-dropdown">
-                    <option value="upcoming" selected>⚽ All Upcoming Sports</option>
-                    <option value="soccer_epl">⚽ English Premier League</option>
-                    <option value="basketball_nba">🏀 NBA Basketball</option>
-                    <option value="tennis_atp">🎾 ATP Tennis</option>
-                </select>
+            <div id="view-pane-sportsbook" class="view-panel">
+                <div class="search-wrapper">
+                    <input type="text" id="sports-search-bar" placeholder="Search team, league, sport..." oninput="executeLiveSearch()">
+                </div>
+
+                <div class="mobile-sports-menu">
+                    <label for="sports-dropdown">Filter:</label>
+                    <select id="sports-dropdown">
+                        <option value="upcoming">🌐 All Upcoming Sports</option>
+                    </select>
+                </div>
+
+                <div class="section-header">
+                    <h2>Live & Upcoming Markets</h2>
+                </div>
+
+                <div id="matches-loader" class="loading-text">Connecting to sports feed network...</div>
+                
+                <div id="live-matches-container"></div>
             </div>
 
-            <div class="section-header">
-                <h2>Live & Upcoming Matches</h2>
+            <div id="view-pane-mybets" class="view-panel style-hidden">
+                <div class="section-header">
+                    <h2>My Placed Bets History</h2>
+                </div>
+                <div id="history-container" class="history-view-grid">
+                    <div class="empty-history-text">No betting history found in local database.</div>
+                </div>
             </div>
 
-            <!-- Fetch Loader Mechanism -->
-            <div id="matches-loader" class="loading-text">Fetching live global odds from the blockchain feed...</div>
-            
-            <!-- Target container where JavaScript dumps the active real matches -->
-            <div id="live-matches-container"></div>
         </main>
 
-        <!-- Right Sidebar: Interactive Betslip Module -->
-        <aside class="betslip-container">
+        <aside class="betslip-container" id="right-betslip-wrapper">
             <h3>Betslip</h3>
             
-            <!-- Default Empty State View -->
             <div id="betslip-empty" class="betslip-empty">
                 Your betslip is empty. Click on any odds to add a bet.
             </div>
             
-            <!-- Active Processing View (Switched dynamically via JS) -->
             <div id="betslip-active" class="betslip-active style-hidden">
                 <div class="slip-item">
                     <div class="slip-match" id="slip-match">Match Template</div>
@@ -87,7 +91,6 @@
 
     </div>
 
-    <!-- Injecting Logic Scripts -->
     <script src="app.js"></script>
 </body>
 </html>
